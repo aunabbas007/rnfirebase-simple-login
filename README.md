@@ -1,6 +1,6 @@
-#Simple React Native Firebase login, signup & signout app code.
+# Simple React Native Firebase login, signup & signout app code.
 
-##iOS app
+## iOS app
 
 **React Native**
 **React Navigation**
