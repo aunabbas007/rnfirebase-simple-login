@@ -68,17 +68,6 @@ const LoginScreen = props => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      <View style={styles.statusBar}>
-        <Text
-          style={{
-            color: 'white',
-            fontSize: 22,
-            fontWeight: 'bold',
-            marginBottom: -40,
-          }}>
-          Login Screen
-        </Text>
-      </View>
       <SafeAreaView
         style={{
           alignItems: 'center',
@@ -121,12 +110,6 @@ const LoginScreen = props => {
 };
 
 const styles = StyleSheet.create({
-  statusBar: {
-    height: 90,
-    backgroundColor: '#0086ad',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   input: {
     height: 30,
     borderBottomWidth: 1,
