@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {View, Text, ActivityIndicator} from 'react-native';
+import {View, Text, ActivityIndicator, Button} from 'react-native';
 import auth from '@react-native-firebase/auth';
 
 const StartScreen = props => {
@@ -7,9 +7,10 @@ const StartScreen = props => {
     if (auth().currentUser !== null) {
       console.log('User is logged in');
       console.log(auth().currentUser.email);
-      props.navigation.navigate('Home');
+      props.navigation.replace('Home');
     } else {
-      props.navigation.navigate('Login');
+      console.log('login please');
+      props.navigation.replace('Login');
     }
   });
 
