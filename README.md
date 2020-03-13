@@ -6,7 +6,7 @@
 **React Navigation**
 **React Native Firebase/Firestore**
 
-_type yarn or npm install in terminal_
-_To see bundles' versions, kindly refer to **package.json** file_
+_type yarn or npm install in terminal._
+_To see bundles' versions, kindly refer to **package.json** file._
 
 **Note:** *GoogleServices-Info.plist* file is removed from iOS folder, you need to setup your own firebase's firestore. [Just follow these instructions!](https://invertase.io/oss/react-native-firebase/v6/firestore/ios)
