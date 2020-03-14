@@ -53,7 +53,7 @@ const LoginScreen = props => {
         const a = await auth().signInWithEmailAndPassword(email, password);
         if (a) {
           console.log('User logged in');
-          props.navigation.navigate('Home');
+          props.navigation.replace('Home');
         }
       } catch (error) {
         console.log('Login Error');
