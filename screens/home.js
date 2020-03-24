@@ -12,7 +12,6 @@ import {
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import {TextInput, FlatList} from 'react-native-gesture-handler';
-import {SafeAreaView} from 'react-navigation';
 
 const user = auth().currentUser;
 const db = firestore().collection(user.uid);
@@ -29,6 +28,7 @@ const HomeScreen = () => {
       console.log('Empty Input...!!!');
       return;
     }
+    // logging data.
     console.log(todo);
     await db.add({todo}).catch(err => {
       console.log(err.toString());
@@ -43,16 +43,15 @@ const HomeScreen = () => {
       return;
     }
     console.log(text);
-    // await db.add({todo}).catch(err => {
-    //   console.log(err.toString());
-    // });
+    await db.doc(list[edit].id).set({
+      todo: text,
+    });
     setText('');
     setEdit(null);
   };
 
   useEffect(() => {
     let fetch = async () => {
-      firestore().enableNetwork();
       await db
         .get()
         .then(snapshot => {
@@ -89,11 +88,15 @@ const HomeScreen = () => {
           keyboardType="default"
           placeholderTextColor="#616161"
           style={styles.input}
-          onChangeText={edit ? setText : setTodo}
-          value={edit ? text : todo}
+          onChangeText={edit === null ? setTodo : setText}
+          value={edit === null ? todo : text}
         />
         <View style={styles.button}>
-          <Button title="Save" color="#009688" onPress={edit ? updateTodo : saveTodo} />
+          <Button
+            title="Save"
+            color="#009688"
+            onPress={edit === null ? saveTodo : updateTodo}
+          />
         </View>
       </View>
       <FlatList
@@ -101,7 +104,11 @@ const HomeScreen = () => {
         keyExtractor={(item, index) => index + ''}
         renderItem={({item, index}) => {
           return (
-            <TouchableOpacity onPress={() => { setEdit(index); setText(item.data().todo) }}>
+            <TouchableOpacity
+              onPress={() => {
+                setEdit(index);
+                setText(item.data().todo);
+              }}>
               <Text>{item.data().todo}</Text>
             </TouchableOpacity>
           );
